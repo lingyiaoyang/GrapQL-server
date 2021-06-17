@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const PORT = 7000;
-const userData = require('./fake_data.json');
+const Data = require('./fake_data.json');
 const {
   GraphQLObjectType,
   GraphQLSchema,
@@ -12,43 +12,51 @@ const {
 } = require('graphql');
 const { graphqlHTTP } = require('express-graphql');
 
+console.log(Data);
+
 const DetailType = new GraphQLObjectType({
   name: 'detail',
-  description: 'This is detail information',
+  description: 'This is all detail',
   fields: () => ({
-    // id: { type: new GraphQLNonNull(GraphQLInt) },
-    details: { type: new GraphQLNonNull(GraphQLString) },
-    // career: { type: new GraphQLNonNull(GraphQLString) },
-    // socialId: { type: new GraphQLNonNull(GraphQLInt) },
+    id: { type: GraphQLNonNull(GraphQLInt) },
+    name: { type: GraphQLNonNull(GraphQLString) },
+    socialid: { type: GraphQLNonNull(GraphQLInt) },
+    social: {
+      type: SocialType,
+      resolve: (detail) => {
+        return SocialType.find((social) => social.id === detail.socialid);
+      },
+    },
   }),
 });
 
-// const SocialType = new GraphQLObjectType({
-//   name: 'socialMedia',
-//   description: 'This is detail information',
-//   fields: () => ({
-//     id: { type: new GraphQLNonNull(GraphQLInt) },
-//     socialMedia: { type: new GraphQLNonNull(GraphQLString) },
-//   }),
-// });
+const SocialType = new GraphQLObjectType({
+  name: 'social',
+  description: 'This is all social media',
+  fields: () => ({
+    id: { type: GraphQLNonNull(GraphQLInt) },
+    socialmedia: { type: GraphQLNonNull(GraphQLString) },
+  }),
+});
 
 const DataType = new GraphQLObjectType({
-  name: 'data',
-  description: 'This is details and socialMedias',
+  name: 'twoThings',
+  description: 'This is two information',
   fields: () => ({
-    detail: { type: new GraphQLList(DetailType) },
-    // socialMedia: { type: new GraphQLList(SocialType) },
+    id: { type: GraphQLNonNull(GraphQLInt) },
+    details: { type: GraphQLList(DetailType) },
+    socials: { type: GraphQLList(SocialType) },
   }),
 });
 
 const RootQueryType = new GraphQLObjectType({
-  name: 'rootQuery',
-  description: 'This is rootQuery',
+  name: 'Query',
+  description: 'rootQuery',
   fields: () => ({
-    list: {
+    Twothings: {
       type: new GraphQLList(DataType),
-      description: 'List of All information',
-      resolve: () => userData,
+      description: 'List of All detail',
+      resolve: () => Data,
     },
   }),
 });

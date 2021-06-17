@@ -1,33 +1,13 @@
 [
   {
+    "id": 1,
     "details": [
-      {
-        "id": 1,
-        "name": "lingyiaoyang",
-        "career": "web developer",
-        "socialId": 1
-      },
-      { "id": 2, "name": "meimei", "career": "baker", "socialId": 2 },
-      { "id": 3, "name": "Ali", "career": "FireFighter", "socialId": 1 },
-      { "id": 4, "name": "Abu", "career": "Teacher", "socialId": 3 },
-      { "id": 5, "name": "Jackson", "career": "Chef", "socialId": 1 },
-      {
-        "id": 6,
-        "name": "Jacky",
-        "career": "backend programmer",
-        "socialId": 2
-      },
-      {
-        "id": 7,
-        "name": "JohnDoe",
-        "career": "fontend programmer",
-        "socialId": 3
-      }
+      { "id": 1, "name": "lingyiaoyang", "socialid": 2 },
+      { "id": 2, "name": "meimei", "socialid": 1 }
     ],
-    "socialMedias": [
-      { "id": 1, "socialMedia": "facebook" },
-      { "id": 2, "socialMedia": "linked" },
-      { "id": 3, "socialMedia": "twitter" }
+    "socials": [
+      { "id": 1, "socialmedia": "facebook" },
+      { "id": 2, "socialmedia": "twitter" }
     ]
   }
 ]

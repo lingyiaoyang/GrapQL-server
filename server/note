@@ -1,0 +1,6 @@
+grapQl {
+  1)name cannot have space 
+  2)every object must have id
+  3)object cannot have uppercase
+  4)fields also cannot have uppercase
+}
